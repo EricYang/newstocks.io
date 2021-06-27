@@ -1,0 +1,1 @@
+"use strict";angular.module("myApp").controller("AppCtrl",["$scope","$rootScope",function(o,t){o.version="1.0",o.title="興櫃資訊"}]);

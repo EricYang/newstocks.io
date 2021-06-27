@@ -1,0 +1,21 @@
+
+<uib-accordion> 
+    <div class="panel panel-default">
+    <uib-accordion-group is-open="status.open">
+    <uib-accordion-heading>
+    <div class="panel-heading">
+    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+    {{name_chart}} 
+    <small class="pull-right">{{desc_chart}}</small>
+    </div>
+    </uib-accordion-heading>
+    <div class="panel-body">
+    <canvas id="base" class="chart-bar"
+    chart-data="data_chart" chart-labels="labels_chart" chart-colors="colors_chart"
+    chart-dataset-override="datasetOverride" >
+    </canvas> 
+    </div>
+    </uib-accordion-group>
+    </div>
+</uib-accordion>
+

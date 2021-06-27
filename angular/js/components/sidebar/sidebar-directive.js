@@ -1,0 +1,1 @@
+"use strict";angular.module("myApp.sidebar.sidebar-directive",[]).directive("appSidebar",function(){return{restrict:"E",templateUrl:"components/sidebar/sidebar.html",replace:"true",scope:{sData:"=",sEnvironment:"="},link:function(i,t,e){i.getBoolean=function(e){return"true"===e},e.$observe("ngShow",function(e){t.css("visibility",i.getBoolean(e)?"visible":"hidden")})}}});

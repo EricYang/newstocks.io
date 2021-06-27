@@ -1,0 +1,17 @@
+
+
+    <div class="modal-header">
+    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+    {{name_chart}} 
+    </div>
+
+    <div class="modal-body">
+    <canvas id="base" class="chart-line"
+    chart-data="data_chart" chart-labels="labels_chart" chart-colors="colors_chart"
+    chart-dataset-override="datasetOverride" >
+    </canvas> 
+    </div>
+
+    <div class="modal-footer">
+    <small class="pull-right">{{desc_chart}}</small>
+    </div>

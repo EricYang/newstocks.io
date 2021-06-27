@@ -1,0 +1,99 @@
+<!-- /.row -->
+
+<div class="row">
+     <!--div class="col-lg-12" ng-include="'angular/tpl/canvas.html'"></div-->
+
+    <div class="col-lg-12">
+     <div class='col-md-12'>
+     <p class="input-group">
+     <input type="text" class="form-control" uib-datepicker-popup='yyyy/MM/dd' ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+     <span class="input-group-btn">
+     <button type="button" class="btn btn-default" ng-click="open1()"><i class="fa fa-calendar"></i></button>
+     </span>
+    <span class="input-group-btn col-md-6">
+    <button button class="btn btn-primary" hef="#" ng-click="getData($event)">刷新<i class="fa fa-refresh"></i></button>
+    </span>
+     </p>
+     </div>
+     <div class='col-md-6'>
+    <span>
+    成交量突破:<i class="fa fa-apple" aria-hidden="true"></i>
+    創新高:<i class="fa fa-rocket" aria-hidden="true"></i>
+    近日申請:<i class="fa fa-tag" aria-hidden="true"></i>
+    新進股票:<small>new</small>
+    </span>
+    <label>
+    {{announcement.join(',')}}
+    </label>
+    </div>
+    <div class='col-md-6' ng-show="thenewstocks.length>0">新進股票:<span ng-repeat="key in thenewstocks"><label >{{key}}{{ origindata[key].name }}, </label></span></div>
+
+    </div>
+    <div class="col-lg-12">
+    <div class="col-md-12">
+    <div>
+    篩選按鈕:
+    </div>
+          <span  ng-repeat="title in titles"><button  ng-class="title.visible?'btn-primary':'btn-default'" ng-click='setTitle(title)'>{{title.name}}</button></span>
+          <span>
+          </span>
+    <small><p class="text-right">總共有{{ alldata.length}}筆</p></small>
+    </div>
+    </div>
+    </div>
+<div id="tableContent"  class="row">
+    <div class="col-md-12">
+            <!-- content -->
+        <div class="table-responsive bodycontainer scrollable">
+            <table class="table table-hover table-condensed table-scrollable">
+                <thead>
+                    <tr>
+                        <th ng-show="title.visible" ng-repeat="title in titles" ng-click="changeSorting(title.id)" class='well'  ng-class="(title.hasOwnProperty('sys'))?'hidden-print':''"><a href="">{{title.name}}</a></th>
+                    </tr>
+                </thead>
+                
+                <tr ng-hide='data.notShow' ng-class="data.rise>0 && data.current_avg<data.current_price?'bg-danger':'bg-success'" ng-repeat="data in alldata |orderBy:sort.column:sort.descending:getNumber:true">
+                    <td ng-repeat="title in titles track by $index" ng-show="title.visible">
+                        <div ng-hide='data.notShow'>
+                        <!--a href="#/newstocks/{{data[title.id]}}" ng-if="title.id===editKey"> {{ data[title.id]}} </a--> 
+                        <div ng-if="title.id===editKey" >
+                        {{data[title.id]}}
+                        <!--i ng-show="hist[data[title.id]].date.length<=30" class="fa fa-rocket" aria-hidden="true"></i-->
+                        <small ng-show="hist[data[title.id]].date.length<=30">new</small>
+                        <i ng-show="data.volumn>=hist[data.id].gap_volumn[partOfTime]" class="fa fa-apple" aria-hidden="true"></i>
+                        <i ng-show="data.high>=hist[data.id].max" class="fa fa-rocket" aria-hidden="true"></i>
+                        <i ng-show="reminddata[data[title.id]]" class="fa fa-tag" aria-hidden="true"></i>
+                        </div>
+                        <div ng-if="title.id!=='price' && title.type=='Array'">
+                        <uib-accordion> 
+                          <uib-accordion-group is-open="status.open">
+                                <uib-accordion-heading ng-if="data_chart=status.open?data[title.id]:''">
+                                {{title.id}}
+                                </uib-accordion-heading>
+                            </uib-accordion-group>
+                        </uib-accordion>
+                        </div>
+                        <div ng-if="title.type=='percentage'">
+                           {{data[title.id] | number:2}}%
+                        </div>
+                        <button class='btn btn-default' ng-click="setChart(data[title.id],data.name,title.name,title.interval)" ng-if="title.type=='chart'"> {{ title.chartType}}圖 </button> 
+                        <div ng-if="title.id!==editKey">
+                        <div ng-if="title.type=='number' || title.type=='string'">
+                        {{data[title.id]}}
+                        </div>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <!-- content -->
+        <div class="row">
+            <div class="text-right">
+            </div>
+        </div>
+            </div>
+        </div>
+<!-- /.row -->
+
+
