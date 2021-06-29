@@ -1,0 +1,27 @@
+
+<div class="modal-header">
+<p class='text-right'>
+<i class="fa fa-info" aria-hidden="true"></i>
+{{name}} 
+    <button type="button" class="btn " 
+    data-dismiss="modal" ng-click="close()" >
+    ×
+    </button>
+</p>
+</div>
+
+<div class="modal-body">
+<div ng-if='text' align="center">
+  <textarea rows="20" cols="50">
+  {{text}}
+  </textarea>
+</div>
+<div ng-if='array' >
+  <ul>
+  <li ng-repeat='o in array'>{{o.date}}<a href="{{o.link}}" target="_blank"> {{o.text}}</a></li>
+  </ul>
+</div>
+</div>
+
+<!--div class="modal-footer">
+</div-->
