@@ -73,20 +73,8 @@
                             </uib-accordion-group>
                         </uib-accordion>
                         </div>
-                        <div ng-if="title.id=='news'">
-                        <uib-accordion> 
-                          <uib-accordion-group is-open="status.open">
-                                <uib-accordion-heading ng-if="!origindata[data.id].news">
-                        <button class='btn btn-lg' ng-click="getIndividualNewJson(data.id)"> 新聞稿 </button> 
-                                </uib-accordion-heading>
-                             <div ng-if='origindata[data.id].news'>
-                             <ul>
-                               <li ng-repeat='o in origindata[data.id].news'>{{o.date}}<a href="{{o.link}}" target="_blank"> {{o.text}}</a></li>
-                                   </ul>
-                             </div>
-                            </uib-accordion-group>
-                        </uib-accordion>
-                        </div>
+                        <button ng-if="title.id=='wiki'" class='btn btn-md btn-primary' ng-click="showWiki(data.id)">W.<i class="fa fa-file-text" aria-hidden="true"></i> </button> 
+                        <button ng-if="title.id=='news'" class='btn btn-md btn-primary' ng-click="showNews(data.id)"><i class="fa fa-file-text-o" aria-hidden="true"></i></button> 
                         <div ng-if="title.type=='percentage'">
                            {{data[title.id] | number:2}}%
                         </div>
